@@ -63,19 +63,19 @@ namespace Valtec2
                 switch (int.Parse(tbLine.Text))
                 {
                     case 1:
-                        dt.WriteXml(@"../../Список счетчиков Линии 1.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 1.xml");
                         break;
                     case 2:
-                        dt.WriteXml(@"../../Список счетчиков Линии 2.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 2.xml");
                         break;
                     case 3:
-                        dt.WriteXml(@"../../Список счетчиков Линии 3.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 3.xml");
                         break;
                     case 4:
-                        dt.WriteXml(@"../../Список счетчиков Линии 4.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 4.xml");
                         break;
                     case 5:
-                        dt.WriteXml(@"../../Список счетчиков Линии 5.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 5.xml");
                         break;
                     default:
                         break;

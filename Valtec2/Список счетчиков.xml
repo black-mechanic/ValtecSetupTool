@@ -1,133 +1,133 @@
 <?xml version="1.0" standalone="yes"?>
 <DocumentElement>
   <TCounters>
-    <id>54</id>
+    <id>2</id>
     <Line>1</Line>
     <SerialNumber>00251019</SerialNumber>
     <RoomNumber>15</RoomNumber>
     <MBusAddress>1</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>55</id>
+    <id>3</id>
     <Line>1</Line>
     <SerialNumber>00251018</SerialNumber>
     <RoomNumber>25</RoomNumber>
     <MBusAddress>9</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>56</id>
+    <id>4</id>
     <Line>1</Line>
     <SerialNumber>00251014</SerialNumber>
     <RoomNumber>2</RoomNumber>
     <MBusAddress>5</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>57</id>
+    <id>5</id>
     <Line>1</Line>
     <SerialNumber>00251011</SerialNumber>
     <RoomNumber>22</RoomNumber>
     <MBusAddress>2</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>58</id>
+    <id>6</id>
     <Line>1</Line>
     <SerialNumber>00251012</SerialNumber>
     <RoomNumber>19</RoomNumber>
     <MBusAddress>4</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>59</id>
+    <id>7</id>
     <Line>1</Line>
     <SerialNumber>00251019</SerialNumber>
     <RoomNumber>15</RoomNumber>
     <MBusAddress>1</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>60</id>
+    <id>8</id>
     <Line>1</Line>
     <SerialNumber>00251018</SerialNumber>
     <RoomNumber>25</RoomNumber>
     <MBusAddress>9</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>61</id>
+    <id>9</id>
     <Line>1</Line>
     <SerialNumber>00251014</SerialNumber>
     <RoomNumber>2</RoomNumber>
     <MBusAddress>5</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>62</id>
+    <id>10</id>
     <Line>1</Line>
     <SerialNumber>00251011</SerialNumber>
     <RoomNumber>22</RoomNumber>
     <MBusAddress>2</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>63</id>
+    <id>11</id>
     <Line>1</Line>
     <SerialNumber>00251012</SerialNumber>
     <RoomNumber>19</RoomNumber>
     <MBusAddress>4</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>64</id>
+    <id>12</id>
     <Line>1</Line>
     <SerialNumber>00251015</SerialNumber>
     <RoomNumber>33</RoomNumber>
     <MBusAddress>3</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>65</id>
+    <id>13</id>
     <Line>1</Line>
     <SerialNumber>00251015</SerialNumber>
     <RoomNumber>33</RoomNumber>
     <MBusAddress>6</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>66</id>
+    <id>14</id>
     <Line>2</Line>
     <SerialNumber>00251016</SerialNumber>
     <RoomNumber>21</RoomNumber>
     <MBusAddress>4</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>67</id>
+    <id>15</id>
     <Line>2</Line>
     <SerialNumber>00251016</SerialNumber>
     <RoomNumber>21</RoomNumber>
     <MBusAddress>4</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>68</id>
+    <id>16</id>
     <Line>2</Line>
     <SerialNumber>00251015</SerialNumber>
     <RoomNumber>0</RoomNumber>
     <MBusAddress>1</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>69</id>
+    <id>17</id>
     <Line>3</Line>
     <SerialNumber>00251020</SerialNumber>
     <RoomNumber>11</RoomNumber>
     <MBusAddress>80</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>70</id>
+    <id>18</id>
     <Line>3</Line>
     <SerialNumber>00251015</SerialNumber>
     <RoomNumber>1</RoomNumber>
     <MBusAddress>1</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>71</id>
+    <id>19</id>
     <Line>4</Line>
     <SerialNumber>00251015</SerialNumber>
-    <RoomNumber>0</RoomNumber>
+    <RoomNumber>2</RoomNumber>
     <MBusAddress>1</MBusAddress>
   </TCounters>
   <TCounters>
-    <id>72</id>
+    <id>20</id>
     <Line>5</Line>
     <SerialNumber>00251015</SerialNumber>
     <RoomNumber>2</RoomNumber>

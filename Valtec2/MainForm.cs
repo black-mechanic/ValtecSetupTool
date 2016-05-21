@@ -94,10 +94,10 @@ namespace Valtec2
             //dgvTCounters.Refresh();
         }
 
-        private void btnFindCounter_Click(object sender, EventArgs e)
-        {
-            dtTCounters.WriteXml(@"../../Список счетчиков.xml");
-        }
+        //private void btnFindCounter_Click(object sender, EventArgs e)
+        //{
+        //    dtTCounters.WriteXml(@"../../Список счетчиков.xml");
+        //}
         private void InitializeGridViewFromFile()
         {
             fillDataTableFromXMLFile(ref dtTCounters);
@@ -140,19 +140,19 @@ namespace Valtec2
                         unionAllFile(ref dt); // Собрать информацию со всех файлов
                         break;
                     case 1:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 1.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 1.xml"); //загружаем xml файл
                         break;
                     case 2:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 2.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 2.xml"); //загружаем xml файл
                         break;
                     case 3:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 3.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 3.xml"); //загружаем xml файл
                         break;
                     case 4:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 4.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 4.xml"); //загружаем xml файл
                         break;
                     case 5:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 5.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 5.xml"); //загружаем xml файл
                         break;
                     default:
                         MessageBox.Show("Такой линии нет. Линия - " + Properties.Settings.Default.mbusLine.ToString());
@@ -257,7 +257,7 @@ namespace Valtec2
             DataRow newRow = null;
             for (int i = 1; i < 6; i++)
             {
-                xDoc = XDocument.Load(@"../../Список счетчиков Линии " + i + ".xml"); //загружаем xml файл
+                xDoc = XDocument.Load(@"Files/Список счетчиков Линии " + i + ".xml"); //загружаем xml файл
                 foreach (XElement element in xDoc.Descendants("TCounters"))
                 {
                     newRow = dt.NewRow();
@@ -268,6 +268,16 @@ namespace Valtec2
                     dt.Rows.Add(newRow);
                 }
             }
+        }
+
+        private void btnSaveCommonTable_Click(object sender, EventArgs e)
+        {
+            dtTCounters.WriteXml(@"../../Список счетчиков.xml");
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
