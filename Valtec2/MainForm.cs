@@ -34,17 +34,40 @@ namespace Valtec2
 
          private void btnAddCounter_Click(object sender, EventArgs e)
         {
-            int bytecount = 0;
             byte checksumm = 0;
             int checksummPlace = 0;
             //TCounterParam tcntparam = new TCounterParam();
-            byte[] rxmessage = new byte[200]; //{ 0x50, 0x54, 0x41, 0x66, 0x58, 0x38 };
-            byte[] cmdString = new byte[5] { 0x10, 0x5b, 0xFE, 0x59, 0x16 };
+            byte[] rxmessage = new byte[1024]; //{ 0x50, 0x54, 0x41, 0x66, 0x58, 0x38 };
+            byte[] cmdString = new byte[5] { 0x10, 0x5b, 0xFE, 0x59, 0x16 }; // Полноценный запрос
+            //byte[] cmdString = new byte[5] { 0x10, 0x40, 0xFE, 0x3E, 0x16 }; // Для ответа E5
             rs232Port.PortName = Properties.Settings.Default.rsPort;
             rs232Port.Open();
+            System.Threading.Thread.Sleep(300);
+            rs232Port.DiscardInBuffer();
+            rs232Port.DiscardOutBuffer();
+            System.Threading.Thread.Sleep(300);
+            //MessageBox.Show("Порт открыт");
             rs232Port.Write(cmdString, 0, 5);
-            System.Threading.Thread.Sleep(1000);
-            bytecount = rs232Port.Read(rxmessage, 0, 180);
+            //MessageBox.Show("Команда послана");
+            System.Threading.Thread.Sleep(2000);
+            int offsetInBuf = 0;
+            do
+            {
+                try
+                {
+                    rxmessage[offsetInBuf] = (byte)(rs232Port.ReadByte());
+                    offsetInBuf++;
+                }
+                catch(TimeoutException)
+                { // Попадаем сюда если не было приёма потока более чем 1 сек. Т.е. поток вероятно принят полностью
+                    //MessageBox.Show("получили Timeout на количестве " + offsetInBuf.ToString());
+                    offsetInBuf = 200; // Заведомо большое число для выхода из цикла
+                }
+                
+            } while (offsetInBuf < 180); // Длина сообщения от счетчика = 150 байт. Число 180 это некоторая граница для прерывания приёма в случае длинного потока из мусора 
+            
+            //MessageBox.Show("Принято байт после - " + offsetInBuf.ToString() + " | " + rxmessage[0].ToString("X2") + " " + rxmessage[1].ToString("X2") + " " + rxmessage[2].ToString("X2") + " " + rxmessage[3].ToString("X2") + " " + rxmessage[4].ToString("X2") + " " + rxmessage[5].ToString("X2") + " " + rxmessage[6].ToString("X2"));
+            
             checksumm = countCheckSumm(ref rxmessage, 4, rxmessage[1]);
             rs232Port.Close();
             checksummPlace = rxmessage[1] + 4; // Байт контрольной суммы находится на предпоследнем месте в принятой телеграмме. Соответственно длина (второй байт) плюс смещение не участвующее в подсчете
@@ -94,10 +117,10 @@ namespace Valtec2
             //dgvTCounters.Refresh();
         }
 
-        private void btnFindCounter_Click(object sender, EventArgs e)
-        {
-            dtTCounters.WriteXml(@"../../Список счетчиков.xml");
-        }
+        //private void btnFindCounter_Click(object sender, EventArgs e)
+        //{
+        //    dtTCounters.WriteXml(@"../../Список счетчиков.xml");
+        //}
         private void InitializeGridViewFromFile()
         {
             fillDataTableFromXMLFile(ref dtTCounters);
@@ -118,13 +141,16 @@ namespace Valtec2
             cbRs232Port.Text = Properties.Settings.Default.rsPort;
             rs232Port = new SerialPort();
             rs232Port.BaudRate = Properties.Settings.Default.rsSpeed;
-            rs232Port.Parity = Parity.None;
+            rs232Port.Parity = Parity.Even;
             rs232Port.StopBits = StopBits.One;
             rs232Port.DataBits = 8;
             rs232Port.Handshake = Handshake.None;
             rs232Port.RtsEnable = false;
-            rs232Port.ReadTimeout = 500;
-            rs232Port.WriteTimeout = 500;
+            rs232Port.ReadTimeout = 1000;
+            rs232Port.WriteTimeout = 1000;
+            rs232Port.PortName = Properties.Settings.Default.rsPort;
+            rs232Port.Open();
+            rs232Port.Close();
         }
         private void fillDataTableFromXMLFile(ref DataTable dt)
         {
@@ -140,19 +166,19 @@ namespace Valtec2
                         unionAllFile(ref dt); // Собрать информацию со всех файлов
                         break;
                     case 1:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 1.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 1.xml"); //загружаем xml файл
                         break;
                     case 2:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 2.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 2.xml"); //загружаем xml файл
                         break;
                     case 3:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 3.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 3.xml"); //загружаем xml файл
                         break;
                     case 4:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 4.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 4.xml"); //загружаем xml файл
                         break;
                     case 5:
-                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 5.xml"); //загружаем xml файл
+                        xDoc = XDocument.Load(@"Files/Список счетчиков Линии 5.xml"); //загружаем xml файл
                         break;
                     default:
                         MessageBox.Show("Такой линии нет. Линия - " + Properties.Settings.Default.mbusLine.ToString());
@@ -257,7 +283,7 @@ namespace Valtec2
             DataRow newRow = null;
             for (int i = 1; i < 6; i++)
             {
-                xDoc = XDocument.Load(@"../../Список счетчиков Линии " + i + ".xml"); //загружаем xml файл
+                xDoc = XDocument.Load(@"Files/Список счетчиков Линии " + i + ".xml"); //загружаем xml файл
                 foreach (XElement element in xDoc.Descendants("TCounters"))
                 {
                     newRow = dt.NewRow();
@@ -268,6 +294,16 @@ namespace Valtec2
                     dt.Rows.Add(newRow);
                 }
             }
+        }
+
+        private void btnSaveCommonTable_Click(object sender, EventArgs e)
+        {
+            dtTCounters.WriteXml(@"../../Список счетчиков.xml");
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Valtec2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM4")]
         public string rsPort {
             get {
                 return ((string)(this["rsPort"]));
@@ -37,7 +37,7 @@ namespace Valtec2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("57600")]
+        [global::System.Configuration.DefaultSettingValueAttribute("300")]
         public int rsSpeed {
             get {
                 return ((int)(this["rsSpeed"]));

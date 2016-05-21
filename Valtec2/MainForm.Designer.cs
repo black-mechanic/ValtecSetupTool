@@ -32,10 +32,10 @@ namespace Valtec2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAddCounter = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.btnSaveCommonTable = new System.Windows.Forms.Button();
             this.dgvTCounters = new System.Windows.Forms.DataGridView();
             this.cbRs232Port = new System.Windows.Forms.ComboBox();
@@ -56,44 +56,44 @@ namespace Valtec2
             this.btnAddCounter.UseVisualStyleBackColor = true;
             this.btnAddCounter.Click += new System.EventHandler(this.btnAddCounter_Click);
             // 
-            // button1
+            // btnExit
             // 
-            this.button1.Location = new System.Drawing.Point(12, 132);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(183, 82);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Очистить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnExit.Location = new System.Drawing.Point(12, 558);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(183, 82);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.Text = "Выход";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnSaveCommonTable
             // 
-            this.btnSaveCommonTable.Location = new System.Drawing.Point(12, 248);
+            this.btnSaveCommonTable.Location = new System.Drawing.Point(12, 130);
             this.btnSaveCommonTable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSaveCommonTable.Name = "btnSaveCommonTable";
             this.btnSaveCommonTable.Size = new System.Drawing.Size(183, 82);
             this.btnSaveCommonTable.TabIndex = 3;
             this.btnSaveCommonTable.Text = "Сохранить";
             this.btnSaveCommonTable.UseVisualStyleBackColor = true;
-            this.btnSaveCommonTable.Click += new System.EventHandler(this.btnFindCounter_Click);
+            this.btnSaveCommonTable.Visible = false;
+            this.btnSaveCommonTable.Click += new System.EventHandler(this.btnSaveCommonTable_Click);
             // 
             // dgvTCounters
             // 
             this.dgvTCounters.AllowUserToAddRows = false;
             this.dgvTCounters.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Moccasin;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dgvTCounters.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Moccasin;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dgvTCounters.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTCounters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvTCounters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTCounters.EnableHeadersVisualStyles = false;
             this.dgvTCounters.Location = new System.Drawing.Point(254, 15);
             this.dgvTCounters.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvTCounters.Name = "dgvTCounters";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dgvTCounters.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dgvTCounters.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvTCounters.Size = new System.Drawing.Size(556, 733);
             this.dgvTCounters.TabIndex = 4;
             // 
@@ -165,7 +165,7 @@ namespace Valtec2
             this.Controls.Add(this.cbRs232Port);
             this.Controls.Add(this.dgvTCounters);
             this.Controls.Add(this.btnSaveCommonTable);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAddCounter);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -179,7 +179,7 @@ namespace Valtec2
 
         #endregion
         private Button btnAddCounter;
-        private Button button1;
+        private Button btnExit;
         private Button btnSaveCommonTable;
         private DataGridView dgvTCounters;
         private ComboBox cbRs232Port;

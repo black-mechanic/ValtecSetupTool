@@ -54,7 +54,7 @@ namespace Valtec2
             newRow["RoomNumber"] = int.Parse(tbRoomNumber.Text);
             newRow["MBusAddress"] = int.Parse(tbMBusAddr.Text);
             dt.Rows.Add(newRow);
-            //Пишем адрес в счетчик
+     //Пишем адрес в счетчик
             cmdWriteNewAddress[9] = byte.Parse(tbMBusAddr.Text); // Вписать новое значение адреса в команду записи адреса
             normalizeCheckSumm(ref cmdWriteNewAddress, 4, cmdWriteNewAddress[1]); // Вписать контрольную сумму
             isRsCommunicationSuccess = writeAddressToTCounter();       // Записать адрес в счётчик
@@ -63,19 +63,19 @@ namespace Valtec2
                 switch (int.Parse(tbLine.Text))
                 {
                     case 1:
-                        dt.WriteXml(@"../../Список счетчиков Линии 1.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 1.xml");
                         break;
                     case 2:
-                        dt.WriteXml(@"../../Список счетчиков Линии 2.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 2.xml");
                         break;
                     case 3:
-                        dt.WriteXml(@"../../Список счетчиков Линии 3.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 3.xml");
                         break;
                     case 4:
-                        dt.WriteXml(@"../../Список счетчиков Линии 4.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 4.xml");
                         break;
                     case 5:
-                        dt.WriteXml(@"../../Список счетчиков Линии 5.xml");
+                        dt.WriteXml(@"Files/Список счетчиков Линии 5.xml");
                         break;
                     default:
                         break;
@@ -101,9 +101,23 @@ namespace Valtec2
         {
             int rxResult;
             rs232Port.Open();
+            System.Threading.Thread.Sleep(300);
+            rs232Port.DiscardInBuffer();
+            rs232Port.DiscardOutBuffer();
+            System.Threading.Thread.Sleep(300);
             rs232Port.Write(cmdWriteNewAddress, 0, 12);
-            System.Threading.Thread.Sleep(700);
-            rxResult = rs232Port.ReadByte();
+            System.Threading.Thread.Sleep(1000);
+            rxResult = 0;
+            try
+            {
+                rxResult = rs232Port.ReadByte();
+            }
+            catch (TimeoutException)
+            {
+                rs232Port.Close();
+                MessageBox.Show("TimeOut_1 При записи адреса не получен ответ");
+            }
+            
             if (rxResult != 0xE5)
             {
                 rs232Port.Close();
@@ -113,9 +127,22 @@ namespace Valtec2
             {
                 cmdReadInit[2] = cmdWriteNewAddress[9]; // Новый адрес
                 cmdReadInit[3] = (byte)(cmdReadInit[1] + cmdReadInit[2]); // Контрольная сумма 
+                rs232Port.DiscardInBuffer();
+                rs232Port.DiscardOutBuffer();
+                System.Threading.Thread.Sleep(300);
                 rs232Port.Write(cmdReadInit, 0, 5); // Запрос запрограмированного счетчика по новому адресу
-                System.Threading.Thread.Sleep(700);
-                rxResult = rs232Port.ReadByte();
+                System.Threading.Thread.Sleep(1000);
+                rxResult = 0;
+                try
+                {
+                    rxResult = rs232Port.ReadByte();
+                }
+                catch
+                {
+                    rs232Port.Close();
+                    MessageBox.Show("TimeOut_2 При проверке нового адреса не получен ответ");
+                }
+                
                 if (rxResult != 0xE5)
                 {
                     rs232Port.Close();
