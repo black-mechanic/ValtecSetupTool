@@ -19,6 +19,8 @@ namespace Valtec2
         {
             //public DataTable tmpdt = 
             InitializeComponent();
+            tbRoomNumber.Text = "0";
+            tbLine.Text = Properties.Settings.Default.mbusLine.ToString();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -57,9 +59,27 @@ namespace Valtec2
             normalizeCheckSumm(ref cmdWriteNewAddress, 4, cmdWriteNewAddress[1]); // Вписать контрольную сумму
             isRsCommunicationSuccess = writeAddressToTCounter();       // Записать адрес в счётчик
             if(isRsCommunicationSuccess == true)
-            {
-                //Сохраняем DataTable в файл
-                dt.WriteXml(@"../../Список счетчиков.xml");
+            {    //Сохраняем DataTable в файл
+                switch (int.Parse(tbLine.Text))
+                {
+                    case 1:
+                        dt.WriteXml(@"../../Список счетчиков Линии 1.xml");
+                        break;
+                    case 2:
+                        dt.WriteXml(@"../../Список счетчиков Линии 2.xml");
+                        break;
+                    case 3:
+                        dt.WriteXml(@"../../Список счетчиков Линии 3.xml");
+                        break;
+                    case 4:
+                        dt.WriteXml(@"../../Список счетчиков Линии 4.xml");
+                        break;
+                    case 5:
+                        dt.WriteXml(@"../../Список счетчиков Линии 5.xml");
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {

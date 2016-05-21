@@ -32,14 +32,16 @@ namespace Valtec2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAddCounter = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnFindCounter = new System.Windows.Forms.Button();
+            this.btnSaveCommonTable = new System.Windows.Forms.Button();
             this.dgvTCounters = new System.Windows.Forms.DataGridView();
             this.cbRs232Port = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbSelectedLine = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTCounters)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,34 +65,35 @@ namespace Valtec2
             this.button1.TabIndex = 2;
             this.button1.Text = "Очистить";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnFindCounter
+            // btnSaveCommonTable
             // 
-            this.btnFindCounter.Location = new System.Drawing.Point(12, 248);
-            this.btnFindCounter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnFindCounter.Name = "btnFindCounter";
-            this.btnFindCounter.Size = new System.Drawing.Size(183, 82);
-            this.btnFindCounter.TabIndex = 3;
-            this.btnFindCounter.Text = "Заполнить";
-            this.btnFindCounter.UseVisualStyleBackColor = true;
-            this.btnFindCounter.Click += new System.EventHandler(this.btnFindCounter_Click);
+            this.btnSaveCommonTable.Location = new System.Drawing.Point(12, 248);
+            this.btnSaveCommonTable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSaveCommonTable.Name = "btnSaveCommonTable";
+            this.btnSaveCommonTable.Size = new System.Drawing.Size(183, 82);
+            this.btnSaveCommonTable.TabIndex = 3;
+            this.btnSaveCommonTable.Text = "Сохранить";
+            this.btnSaveCommonTable.UseVisualStyleBackColor = true;
+            this.btnSaveCommonTable.Click += new System.EventHandler(this.btnFindCounter_Click);
             // 
             // dgvTCounters
             // 
             this.dgvTCounters.AllowUserToAddRows = false;
             this.dgvTCounters.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Moccasin;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dgvTCounters.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Moccasin;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dgvTCounters.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvTCounters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvTCounters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTCounters.EnableHeadersVisualStyles = false;
             this.dgvTCounters.Location = new System.Drawing.Point(254, 15);
             this.dgvTCounters.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvTCounters.Name = "dgvTCounters";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dgvTCounters.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dgvTCounters.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvTCounters.Size = new System.Drawing.Size(556, 733);
             this.dgvTCounters.TabIndex = 4;
             // 
@@ -125,16 +128,43 @@ namespace Valtec2
             this.label1.TabIndex = 6;
             this.label1.Text = "RS Порт";
             // 
+            // cbSelectedLine
+            // 
+            this.cbSelectedLine.FormattingEnabled = true;
+            this.cbSelectedLine.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cbSelectedLine.Location = new System.Drawing.Point(76, 694);
+            this.cbSelectedLine.Name = "cbSelectedLine";
+            this.cbSelectedLine.Size = new System.Drawing.Size(52, 24);
+            this.cbSelectedLine.TabIndex = 7;
+            this.cbSelectedLine.SelectedIndexChanged += new System.EventHandler(this.cbSelectedLine_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 697);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 16);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Линия";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(827, 761);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbSelectedLine);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbRs232Port);
             this.Controls.Add(this.dgvTCounters);
-            this.Controls.Add(this.btnFindCounter);
+            this.Controls.Add(this.btnSaveCommonTable);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddCounter);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -150,10 +180,12 @@ namespace Valtec2
         #endregion
         private Button btnAddCounter;
         private Button button1;
-        private Button btnFindCounter;
+        private Button btnSaveCommonTable;
         private DataGridView dgvTCounters;
         private ComboBox cbRs232Port;
         private Label label1;
+        private ComboBox cbSelectedLine;
+        private Label label2;
     }
 }
 

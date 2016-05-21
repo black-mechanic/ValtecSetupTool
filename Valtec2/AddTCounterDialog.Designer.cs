@@ -47,15 +47,16 @@
             this.tbSerialNumber.Location = new System.Drawing.Point(144, 15);
             this.tbSerialNumber.Name = "tbSerialNumber";
             this.tbSerialNumber.Size = new System.Drawing.Size(135, 22);
-            this.tbSerialNumber.TabIndex = 4;
+            this.tbSerialNumber.TabIndex = 3;
             // 
             // tbLine
             // 
             this.tbLine.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbLine.Location = new System.Drawing.Point(97, 86);
             this.tbLine.Name = "tbLine";
+            this.tbLine.ReadOnly = true;
             this.tbLine.Size = new System.Drawing.Size(100, 22);
-            this.tbLine.TabIndex = 0;
+            this.tbLine.TabIndex = 5;
             this.tbLine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbRoomNumber
@@ -64,7 +65,7 @@
             this.tbRoomNumber.Location = new System.Drawing.Point(97, 112);
             this.tbRoomNumber.Name = "tbRoomNumber";
             this.tbRoomNumber.Size = new System.Drawing.Size(100, 22);
-            this.tbRoomNumber.TabIndex = 1;
+            this.tbRoomNumber.TabIndex = 0;
             this.tbRoomNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
@@ -113,7 +114,7 @@
             this.tbMBusAddr.Location = new System.Drawing.Point(144, 42);
             this.tbMBusAddr.Name = "tbMBusAddr";
             this.tbMBusAddr.Size = new System.Drawing.Size(53, 22);
-            this.tbMBusAddr.TabIndex = 5;
+            this.tbMBusAddr.TabIndex = 4;
             this.tbMBusAddr.TabStop = false;
             // 
             // lblResultInfo
@@ -134,7 +135,7 @@
             this.btnAddCurrentTCounterToList.Location = new System.Drawing.Point(23, 177);
             this.btnAddCurrentTCounterToList.Name = "btnAddCurrentTCounterToList";
             this.btnAddCurrentTCounterToList.Size = new System.Drawing.Size(105, 54);
-            this.btnAddCurrentTCounterToList.TabIndex = 2;
+            this.btnAddCurrentTCounterToList.TabIndex = 1;
             this.btnAddCurrentTCounterToList.Text = "Добавить";
             this.btnAddCurrentTCounterToList.UseVisualStyleBackColor = true;
             this.btnAddCurrentTCounterToList.Click += new System.EventHandler(this.btnAddCurrentTCounterToList_Click);
@@ -145,7 +146,7 @@
             this.btnExit.Location = new System.Drawing.Point(174, 177);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(105, 54);
-            this.btnExit.TabIndex = 3;
+            this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Выйти";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);

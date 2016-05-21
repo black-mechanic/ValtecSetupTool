@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <TCounters>
+    <id>0</id>
+    <Line>2</Line>
+    <SerialNumber>00251016</SerialNumber>
+    <RoomNumber>21</RoomNumber>
+    <MBusAddress>4</MBusAddress>
+  </TCounters>
+  <TCounters>
+    <id>1</id>
+    <Line>2</Line>
+    <SerialNumber>00251016</SerialNumber>
+    <RoomNumber>21</RoomNumber>
+    <MBusAddress>4</MBusAddress>
+  </TCounters>
+  <TCounters>
+    <id>2</id>
+    <Line>2</Line>
+    <SerialNumber>00251015</SerialNumber>
+    <RoomNumber>0</RoomNumber>
+    <MBusAddress>1</MBusAddress>
+  </TCounters>
+</DocumentElement>

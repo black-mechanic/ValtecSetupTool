@@ -27,6 +27,7 @@ namespace Valtec2
         public MainForm()
         {
             InitializeComponent(); // Рисуем форму
+            CreateTable(ref dtTCounters);
             InitializeGridViewFromFile(); // Заполняем таблицу из файла
             InitialiseRs232Port();
         }
@@ -95,7 +96,7 @@ namespace Valtec2
 
         private void btnFindCounter_Click(object sender, EventArgs e)
         {
-            
+            dtTCounters.WriteXml(@"../../Список счетчиков.xml");
         }
         private void InitializeGridViewFromFile()
         {
@@ -127,22 +128,61 @@ namespace Valtec2
         }
         private void fillDataTableFromXMLFile(ref DataTable dt)
         {
-            //dt = null;
+            int iLine = Properties.Settings.Default.mbusLine;
+            cbSelectedLine.Text = Properties.Settings.Default.mbusLine.ToString();
+            XDocument xDoc = null;
+            
             try
             {
-                XDocument xDoc = XDocument.Load(@"../../Список счетчиков.xml"); //загружаем xml файл
-                CreateTable(ref dt);
-                DataRow newRow = null;
-                foreach (XElement element in xDoc.Descendants("TCounters"))
+                switch (iLine)
                 {
-                    newRow = dt.NewRow();
-                    newRow["Line"] = int.Parse(element.Element("Line").Value);
-                    newRow["SerialNumber"] = element.Element("SerialNumber").Value;
-                    newRow["RoomNumber"] = int.Parse(element.Element("RoomNumber").Value);
-                    newRow["MBusAddress"] = int.Parse(element.Element("MBusAddress").Value);
-
-                    dt.Rows.Add(newRow);
+                    case 0:
+                        unionAllFile(ref dt); // Собрать информацию со всех файлов
+                        break;
+                    case 1:
+                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 1.xml"); //загружаем xml файл
+                        break;
+                    case 2:
+                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 2.xml"); //загружаем xml файл
+                        break;
+                    case 3:
+                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 3.xml"); //загружаем xml файл
+                        break;
+                    case 4:
+                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 4.xml"); //загружаем xml файл
+                        break;
+                    case 5:
+                        xDoc = XDocument.Load(@"../../Список счетчиков Линии 5.xml"); //загружаем xml файл
+                        break;
+                    default:
+                        MessageBox.Show("Такой линии нет. Линия - " + Properties.Settings.Default.mbusLine.ToString());
+                        Properties.Settings.Default.mbusLine = 0;
+                        Properties.Settings.Default.Save();
+                        Close();
+                        break;
                 }
+                
+                if(iLine != 0)
+                {  // Формируем таблицу только из счётчиков выбранной линии
+                    btnSaveCommonTable.Visible = false;
+                    DataRow newRow = null;
+                    foreach (XElement element in xDoc.Descendants("TCounters"))
+                    {
+                        if (int.Parse(element.Element("Line").Value) == iLine)
+                        {
+                            newRow = dt.NewRow();
+                            newRow["Line"] = int.Parse(element.Element("Line").Value);
+                            newRow["SerialNumber"] = element.Element("SerialNumber").Value;
+                            newRow["RoomNumber"] = int.Parse(element.Element("RoomNumber").Value);
+                            newRow["MBusAddress"] = int.Parse(element.Element("MBusAddress").Value);
+                            dt.Rows.Add(newRow);
+                        }
+                    }
+                }else
+                {
+                    btnSaveCommonTable.Visible = true;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -170,8 +210,6 @@ namespace Valtec2
             DataColumn colMBusAddress = new DataColumn("MBusAddress", typeof(Int32));
             //добавляем колонки в таблицу
             dt.Columns.AddRange(new DataColumn[] { colID, colLine, colSerialNumber, colRoomNumber, colMBusAddress });
-           
-            //return dt;
         }
        
           private void cbRs232Port_SelectedIndexChanged(object sender, EventArgs e)
@@ -204,6 +242,32 @@ namespace Valtec2
             MessageBox.Show("Вызов принят");
 
         }
-   
+
+        private void cbSelectedLine_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.mbusLine = int.Parse(cbSelectedLine.SelectedItem.ToString());
+            Properties.Settings.Default.Save();
+            dtTCounters.Clear();
+            InitializeGridViewFromFile();
+        }
+
+        private void unionAllFile(ref DataTable dt)
+        {
+            XDocument xDoc;
+            DataRow newRow = null;
+            for (int i = 1; i < 6; i++)
+            {
+                xDoc = XDocument.Load(@"../../Список счетчиков Линии " + i + ".xml"); //загружаем xml файл
+                foreach (XElement element in xDoc.Descendants("TCounters"))
+                {
+                    newRow = dt.NewRow();
+                    newRow["Line"] = int.Parse(element.Element("Line").Value);
+                    newRow["SerialNumber"] = element.Element("SerialNumber").Value;
+                    newRow["RoomNumber"] = int.Parse(element.Element("RoomNumber").Value);
+                    newRow["MBusAddress"] = int.Parse(element.Element("MBusAddress").Value);
+                    dt.Rows.Add(newRow);
+                }
+            }
+        }
     }
 }
