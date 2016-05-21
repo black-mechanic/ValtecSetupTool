@@ -1,0 +1,60 @@
+{10}{5B}{40}{9B}{16} Запрос
+{68}{90}{90}{68}
+{08} Cf - Long frame
+{40} Af address
+{72} Cif variable data respond
+{15}{10}{25}{00} Ser Numb
+{D4}{4E} MFR
+{80} Ver
+{04} Medium - Heat
+{31} Access N
+{00} Status
+{00}{00} Signature
+
+{04} {7C} VIF ASCII
+{04} длина
+{6C}{61}{63}{4D} Mcal
+ {00} {00} {00} {00}
+{04} DIF int32
+{13} VIF объем
+{1C}{00}{00}{00} 28 m куб. 0,028
+{02}{59} Flow Temperature E101 10nn. 10(nn-3) Cels
+{99}{09} 2457 24.57 град
+{02}{5D} Return Temperature E101 11nn 10(nn-3) Cels
+{94}{09} 2452 24.52 град
+{02}{61} Temperature Difference
+{05}{00} 0.05
+{04} {7C} {06} {68}{2F}{6C}{61}{63}{4B} Kcal/h
+{00}{00}{00}{00}
+{02}{3B} Volume Flow E011 1nnn 10(nnn-6) m3/h
+{00}{00} 
+{06}{6D} Time Point E110 110n n = 1 time & date
+{89}{12}{00}{1D}{22}{00}
+{04}{22} On Time E010 00nn nn = 00 seconds nn = 01 minutes nn = 10 hours nn = 11 days
+{E2}{03}{00}{00} 994 часа в работе
+{34}{22} Время нахождения в сбойном состоянии
+{00}{00}{00}{00}
+{04}{FD}{75} Reserved
+{00}{00}{00}{00}
+{02}{FD}{17} Error flags (binary)
+{00}{00}
+{82}{80}
+{02}{6C} Time Point E110 110n n = 0 date
+{1C}{22}
+{84}{80}
+{02}{7C}{04}
+{6C}{61}{63}{4D} Mcal
+{00}{00}{00}{00}
+{84}{80}
+{02}{13} VIF объем
+{1C}{00} 28 м куб.
+{00}{00}
+{82}{80}{02}{59} Flow Temperature E101 10nn. 10(nn-3) Cels
+{E8}{08} Град.
+{82}{80}{02}{5D} Return Temperature E101 11nn 10(nn-3) Cels
+{DC}{08} Град.
+{B1}{80}{02}{22} On Time E010 00nn nn = 00 seconds nn = 01 minutes nn = 10 hours nn = 11 days
+{00}{82}
+{80}{02}{FD}{75} Reserved
+{00}{00}
+{C2}{16}

@@ -1,0 +1,32 @@
+     this.chPNumber.Text = "№ п.п.";
+            this.chPNumber.Width = 40;
+            // 
+            // chMBusLine
+            // 
+            this.chMBusLine.Text = "Линия";
+            this.chMBusLine.Width = 51;
+            // 
+            // chSerialNumber
+            // 
+            this.chSerialNumber.Text = "Серийный Номер";
+            this.chSerialNumber.Width = 100;
+            // 
+            // chRoomNumber
+            // 
+            this.chRoomNumber.Text = "Квартира";
+            this.chRoomNumber.Width = 80;
+            // 
+            // chMBusAddress
+            // 
+            this.chMBusAddress.Text = "Адрес на шине";
+            this.chMBusAddress.Width = 100;
+			
+			
+			     private void fillDataGridView()
+        {
+            XDocument xDoc = XDocument.Load(@"../../Список счетчиков.xml");
+            foreach (XElement elm in xDoc.Descendants("Counter"))
+            {
+                dgvTCounters.Rows.Add(int.Parse(elm.Attribute("id").Value), int.Parse(elm.Element("Линия").Value), int.Parse(elm.Element("Зав.Номер").Value), int.Parse(elm.Element("Квартира").Value), int.Parse(elm.Element("MBus_Адрес").Value));
+            }
+        }
